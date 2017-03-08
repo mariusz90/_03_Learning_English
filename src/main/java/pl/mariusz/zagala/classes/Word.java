@@ -1,10 +1,10 @@
 package pl.mariusz.zagala.classes;
 
 
+
 import pl.mariusz.zagala.datebase.Datebase;
 
 import java.io.*;
-import java.util.Scanner;
 
 /**
  * Created by MariuszZ on 2017-03-07.
@@ -123,9 +123,8 @@ public class Word {
                 System.out.println(words[1]);
                setWordPl(words[0]);
                setWordEn(words[1]);
-
-               Datebase.insertWords(getWordPl(), getWordEn());
-             //   System.out.print(getWordPl()+" "+getWordEn());
+                System.out.println(getWordPl()+getWordEn());
+              // Datebase.insertWords(getWordPl(), getWordEn());
             }
         } catch (IOException e) {
             System.out.println("BŁĄD ODCZYTU Z PLIKU!");

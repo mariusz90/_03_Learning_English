@@ -8,7 +8,7 @@ import java.sql.*;
  * Created by MariuszZ on 2017-03-07.
  */
 public class Datebase {
-    private static final String DB = "jdbc:sqlite:Dziekanat.db"; //nazwe bazy danych
+    private static final String DB = "jdbc:sqlite:Dictionary.db"; //nazwe bazy danych
     private static final String DRV = "org.sqlite.JDBC"; //nazwe sterownika ktory zarzadza polaczenie mz baza danych
     private static Connection conn; //zmienna do zarzadzania polaczeniem z baza danych
     private static Statement stat; //zmienna do zarzadzania zapytaniami sql
@@ -37,15 +37,16 @@ public class Datebase {
                         + "("
                         + "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
                         + "wordPl VARCHAR(50) NOT NULL,"
-                        + "wordAn VARCHAR(50) NOT NULL,"
+                        + "wordAn VARCHAR(50) NOT NULL"
                         + ");";
+
 
         try {
             stat.execute(createTableWords);
-        }catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
     public static void insertWords(String wordPl, String wordAn)
     {
@@ -56,15 +57,18 @@ public class Datebase {
                         + "(?, ?);";
         //znaki zapytania to miejsca pod ktore wstawimy wartosci zmiennych przekazanych jako argument
         //w tym celu posluzymy sie klasa PreparedStaement, ktora zajmuje sie konfiguracja wartosci
+
+
         try {
             PreparedStatement ps = conn.prepareStatement(insertW);
             ps.setString(1, wordPl);
             ps.setString(2, wordAn);
             ps.execute(); //trzeba wyslac zparametryzowane zapytanie
+
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
     }
     public static void updateWords(int id, String wordPl, String wordAn){
         String updateS = "UPDATE Words SET wordPl = ?, wordAn = ?WHERE id = ?;";

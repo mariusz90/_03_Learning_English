@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by MariuszZ on 2017-03-08.
  */
-public class loginPanel extends JPanel implements ActionListener {
+public class LoginPanel extends JPanel implements ActionListener {
     private  JButton btnLogin;
     private JButton btnCancel;
     private JTextField tfUser;
@@ -18,7 +18,7 @@ public class loginPanel extends JPanel implements ActionListener {
     private JButton btnCreate;
     private JFrame frame;
 
-    public loginPanel(JFrame frame)
+    public LoginPanel(JFrame frame)
     {
         super(new GridLayout(4,2,8,8));
         this.frame = frame;
@@ -61,7 +61,7 @@ public class loginPanel extends JPanel implements ActionListener {
 
                 JFrame frameGlowny = new JFrame("Login");
                 frameGlowny.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                mainPanel panel = new mainPanel();
+                MainPanel panel = new MainPanel();
                 panel.setVisible(true);
                 frameGlowny.setContentPane(panel);
                 frameGlowny.pack();
