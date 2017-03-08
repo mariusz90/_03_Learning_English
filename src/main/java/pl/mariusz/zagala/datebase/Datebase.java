@@ -16,17 +16,13 @@ public class Datebase {
     //metoda ustanawiajaca polaczenie z baza danych
     public static void connect()
     {
-        //jezeli bazy danych nie bylo to zostanie ona utworzona a jak byla to sie z nia polaczysz
-        try {
-            //ladujemy sterownik
-            Class.forName(DRV);
-            //nawiazanie polaczenia z baza danych
-            SQLiteConfig conf = new SQLiteConfig();
-            conf.enforceForeignKeys(true); //w sqlite mechanizm kluczy obcych moze byc wylaczony, wtedy mozesz go na sile ustawic
-            conn = DriverManager.getConnection(DB, conf.toProperties()); //jako argument podajesz nazwe bazy danych
-            //inicjalizacja zmiennej od zarzadzania zapytaniami sql
-            stat = conn.createStatement();
 
+        try {
+            Class.forName(DRV);
+            SQLiteConfig conf = new SQLiteConfig();
+            conf.enforceForeignKeys(true);
+            conn = DriverManager.getConnection(DB, conf.toProperties());
+            stat = conn.createStatement();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -51,7 +47,7 @@ public class Datebase {
             e.printStackTrace();
         }
     }
-    public static void insertWords(String wordPl, String wrodAn)
+    public static void insertWords(String wordPl, String wordAn)
     {
         String insertW =
                 "INSERT INTO Words"
@@ -63,7 +59,7 @@ public class Datebase {
         try {
             PreparedStatement ps = conn.prepareStatement(insertW);
             ps.setString(1, wordPl);
-            ps.setString(2, wrodAn);
+            ps.setString(2, wordAn);
             ps.execute(); //trzeba wyslac zparametryzowane zapytanie
         } catch (SQLException e) {
             // TODO Auto-generated catch block
